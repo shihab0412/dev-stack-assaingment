@@ -1,36 +1,78 @@
 import { useState } from "react";
-import Banner from "./components/Banner";
-import Nav from "./components/Nav";
+import { ToastContainer, toast } from "react-toastify";
+
+import Navbar from "./components/Nav";
+import Hero from "./components/Banner";
 import Technologies from "./components/Technologies";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/SIdebar";
+import MainLayout from "./components/MainLayout";
 
 function App() {
   const [stack, setStack] = useState<string[]>([]);
-  const addToStack = (technology: string) => {
-    setStack((previousStack) => {
-      if (previousStack.includes(technology)) {
-        return previousStack;
-      }
 
+  // Add technology
+  const addToStack = (technology: string) => {
+    if (stack.includes(technology)) {
+      toast.info(`${technology} is already in your stack!`);
+      return;
+    }
+
+    setStack((previousStack) => {
       return [...previousStack, technology];
     });
+
+    toast.success(`${technology} added to your stack!`);
+  };
+
+  // Remove one technology
+  const removeFromStack = (technology: string) => {
+    setStack((previousStack) => {
+      return previousStack.filter((item) => item !== technology);
+    });
+
+    toast.error(`${technology} removed from your stack!`);
+  };
+
+  // Remove all technologies
+  const clearStack = () => {
+    setStack([]);
+
+    toast.info("All technologies removed!");
   };
 
   return (
     <>
-      <Nav />
-      <Banner />
-      <Technologies addToStack={addToStack} />
-      const removeFromStack = (technology: string) => {
-  setStack((previousStack) => {
-    return previousStack.filter((item) => item !== technology);
-  });
-};
+      {/* Navbar */}
+      <Navbar />
 
-      <div className="mx-auto max-w-6xl px-4 pb-16">
-        <Sidebar stack={stack} 
-          removeFromStack={removeFromStack}/>
-      </div>
+      {/* Hero / Banner */}
+      <Hero />
+
+      {/* Technologies + Sidebar */}
+      <MainLayout
+        technologies={
+          <Technologies addToStack={addToStack} />
+        }
+        sidebar={
+          <Sidebar
+            stack={stack}
+            removeFromStack={removeFromStack}
+            clearStack={clearStack}
+          />
+        }
+      />
+
+      {/* Toastify */}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
+      />
     </>
   );
 }
