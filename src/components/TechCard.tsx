@@ -39,9 +39,10 @@ type Technology = {
 type TechCardProps = {
   technology: Technology;
   addToStack: (technology: string) => void;
+  stack: string[];
 };
 
-const TechCard = ({ technology, addToStack }: TechCardProps) => {
+const TechCard = ({ technology, addToStack, stack }: TechCardProps) => {
   return (
     <div className="rounded-xl bg-white p-6 shadow-sm">
       {/* Icon */}
@@ -78,12 +79,22 @@ const TechCard = ({ technology, addToStack }: TechCardProps) => {
       <div className="mt-4 text-sm">⭐ {technology.rating}</div>
 
       {/* Button */}
-      <button
-        onClick={() => addToStack(technology.name)}
-        className="mt-5 w-full rounded-lg bg-pink-500 py-2.5 text-sm font-semibold text-white"
-      >
-        Add to Stack
-      </button>
+
+      {stack.includes(technology.name) ? (
+        <button
+          disabled
+          className="mt-5 w-full cursor-not-allowed rounded-lg bg-green-100 py-2.5 text-sm font-semibold text-green-700"
+        >
+          ✓ Added
+        </button>
+      ) : (
+        <button
+          onClick={() => addToStack(technology.name)}
+          className="mt-5 w-full rounded-lg bg-pink-500 py-2.5 text-sm font-semibold text-white transition hover:bg-pink-600"
+        >
+          Add to Stack
+        </button>
+      )}
     </div>
   );
 };

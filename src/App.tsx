@@ -52,7 +52,7 @@ function App() {
 
       <MainLayout
         technologies={
-          <Technologies addToStack={addToStack} />
+          <Technologies addToStack={addToStack } stack={stack} />
         }
         sidebar={
           <Sidebar

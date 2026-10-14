@@ -14,9 +14,10 @@ type Technology = {
 
 type TechnologiesProps = {
   addToStack: (technology: string) => void;
+  stack: string[];
 };
 
-const Technologies = ({ addToStack }: TechnologiesProps) => {
+const Technologies = ({ addToStack, stack }: TechnologiesProps) => {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -64,6 +65,7 @@ const Technologies = ({ addToStack }: TechnologiesProps) => {
                 key={tech.id}
                 technology={tech}
                 addToStack={addToStack}
+                stack={stack}
               />
             ))}
           </div>
