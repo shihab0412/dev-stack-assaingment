@@ -6,7 +6,7 @@ import Hero from "./components/Banner";
 import Technologies from "./components/Technologies";
 import Sidebar from "./components/SIdebar";
 import MainLayout from "./components/MainLayout";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {

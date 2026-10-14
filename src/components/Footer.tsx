@@ -19,7 +19,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="flex flex-col items-center sm:items-start">
             <h2 className="flex items-center gap-2 text-2xl font-bold text-gray-900">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-sm text-white">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-r from-orange-500 via-pink-500 to-purple-500 text-sm text-white">
                 DS
               </span>
               <span>
