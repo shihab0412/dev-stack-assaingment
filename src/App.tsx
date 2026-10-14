@@ -6,11 +6,13 @@ import Hero from "./components/Banner";
 import Technologies from "./components/Technologies";
 import Sidebar from "./components/SIdebar";
 import MainLayout from "./components/MainLayout";
+import Footer from "./components/footer";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [stack, setStack] = useState<string[]>([]);
 
-  // Add technology
+ 
   const addToStack = (technology: string) => {
     if (stack.includes(technology)) {
       toast.info(`${technology} is already in your stack!`);
@@ -24,7 +26,7 @@ function App() {
     toast.success(`${technology} added to your stack!`);
   };
 
-  // Remove one technology
+
   const removeFromStack = (technology: string) => {
     setStack((previousStack) => {
       return previousStack.filter((item) => item !== technology);
@@ -33,7 +35,7 @@ function App() {
     toast.error(`${technology} removed from your stack!`);
   };
 
-  // Remove all technologies
+ 
   const clearStack = () => {
     setStack([]);
 
@@ -42,13 +44,12 @@ function App() {
 
   return (
     <>
-      {/* Navbar */}
+      
       <Navbar />
 
-      {/* Hero / Banner */}
+     
       <Hero />
 
-      {/* Technologies + Sidebar */}
       <MainLayout
         technologies={
           <Technologies addToStack={addToStack} />
@@ -61,8 +62,9 @@ function App() {
           />
         }
       />
-
-      {/* Toastify */}
+        
+         <Footer />
+   
       <ToastContainer
         position="top-right"
         autoClose={2000}
